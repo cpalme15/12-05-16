@@ -1,0 +1,74 @@
+import java.awt.Color;
+import java.util.*;
+import javax.swing.*;
+
+/*sorting objects
+ * 12/05/16
+ * COSC 111
+ * Collin Palmer
+ * 
+ */
+public class Test 
+{
+	
+	enum CarName{BMW,TOYOTA,FORD,GM,MERCEDES};
+	enum Colors{RED,BLACK,WHITE,BLUE,GREEN,YELLOW,PINK};
+	
+//Selection sort
+	
+	public static void main(String[] args) 
+	{
+		// RGB value from 255 for each
+		//0,0,0 is black
+		Colors myFavoriteColor=Colors.GREEN;
+		Color clr= Color.RED;
+		Random r=new Random();
+		
+		String name=JOptionPane.showInputDialog(null,"Enter Your Name","Title",JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(null, name);
+		JFrame jf=new JFrame();
+		JPanel jp= new JPanel();
+		jp.setBackground(new Color(r.nextInt(256),r.nextInt(256),r.nextInt(256)));
+		jf.getContentPane().add(jp);
+		
+		jf.setSize(300, 300);
+		
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jf.setVisible(true);
+		Car[] dealer=new Car[5];
+		dealer[CarName.BMW.ordinal()]=new Car(2015,50000.00);
+		dealer[CarName.TOYOTA.ordinal()]=new Car(1999,100000.00);
+		dealer[CarName.FORD.ordinal()]=new Car(2000,59000.00);
+		dealer[CarName.GM.ordinal()]=new Car(2014,70000.00);
+		dealer[CarName.MERCEDES.ordinal()]=new Car(2017,56000.00);
+		selection_sort(dealer);
+		for(Car element: dealer)
+			System.out.println(element);
+		
+	}
+public static void selection_sort(Car[] s)
+ {
+	int i=0,j=0;
+	int smallest=0;
+	for(i=0;i<s.length-1;i++)
+	{
+		smallest=i;
+		for(j=i+1;j<s.length;j++)
+		{
+			if(s[j].getYear()<s[smallest].getYear())
+				smallest=j;
+		}
+		//swap'
+		Car temp=s[i];
+		s[i]=s[smallest];
+		s[smallest]=temp;
+	}
+	
+ }
+// for readability. enums
+/*sales[0]=1,000,000
+ * sales[BMW]=1,000,000
+ * BMW is the enum
+ * 
+ */
+}
